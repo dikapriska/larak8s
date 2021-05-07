@@ -9,8 +9,8 @@ server {
 	location = /favicon.ico { access_log off; log_not_found off; }
 	location = /robots.txt  { access_log off; log_not_found off; }
 
-        access_log            /var/log/nginx/larafel.access.log;
-        error_log            /var/log/nginx/larafel.error.log;
+        access_log            /var/log/nginx/laravel.access.log;
+        error_log            /var/log/nginx/laravel.error.log;
 
         location / {
                 try_files $uri $uri/ index.php index.php?\$query_string;
