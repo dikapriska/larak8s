@@ -31,3 +31,25 @@ spec:
     protocol: TCP
   selector:
     app: larak8s
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  annotations:
+    nginx.ingress.kubernetes.io/rewrite-target: /
+  name: rewrite
+  namespace: default
+spec:
+  rules:
+  - host: laravel.onboarding.co.id
+    http:
+      paths:
+      - backend:
+          service:
+            name: larak8s
+            port:
+              number: 80
+        path: /
+        pathType: Prefix
+
+
