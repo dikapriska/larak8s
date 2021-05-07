@@ -1,0 +1,33 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: larak8s
+spec:
+  selector:
+    matchLabels:
+      app: larak8s
+  replicas: 2
+  template:
+    metadata:
+      labels:
+        app: larak8s
+    spec:
+      containers:
+      - name: larak8s
+        image: dikapriska/larak8s:latest
+        ports:
+        - containerPort: 80
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: larak8s
+  labels:
+    run: larak8s
+spec:
+  type: NodePort
+  ports:
+  - port: 80
+    protocol: TCP
+  selector:
+    app: larak8s

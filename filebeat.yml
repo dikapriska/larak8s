@@ -1,0 +1,23 @@
+#=========================== Filebeat inputs =============================
+filebeat.inputs:
+- type: log
+  enabled: true
+  paths:
+    - /app/storage/logs/*.log
+  fields_under_root: true
+
+#==================== Elasticsearch template setting ==========================
+setup.template.overwrite: false
+setup.ilm.enabled: false
+setup.template.settings:
+  index.number_of_shards: 1
+  index.codec: best_compression
+
+#================================ Processors =====================================
+processors:
+  - add_host_metadata: ~
+  - add_cloud_metadata: ~
+
+#================================ Outputs =====================================
+output.logstash:
+  hosts: ["10.10.10.107:5040"]
